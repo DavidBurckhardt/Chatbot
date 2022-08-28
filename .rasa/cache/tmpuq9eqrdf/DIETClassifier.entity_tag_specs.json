@@ -1,0 +1,28 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-horario",
+      "2": "I-horario",
+      "3": "L-horario",
+      "4": "U-horario",
+      "5": "B-tarjeta",
+      "6": "I-tarjeta",
+      "7": "L-tarjeta",
+      "8": "U-tarjeta",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-horario": 1,
+      "I-horario": 2,
+      "L-horario": 3,
+      "U-horario": 4,
+      "B-tarjeta": 5,
+      "I-tarjeta": 6,
+      "L-tarjeta": 7,
+      "U-tarjeta": 8,
+      "O": 0
+    },
+    "num_tags": 9
+  }
+]

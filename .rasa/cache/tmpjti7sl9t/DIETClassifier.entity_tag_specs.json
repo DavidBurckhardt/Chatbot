@@ -1,0 +1,20 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-tarjeta",
+      "2": "I-tarjeta",
+      "3": "L-tarjeta",
+      "4": "U-tarjeta",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-tarjeta": 1,
+      "I-tarjeta": 2,
+      "L-tarjeta": 3,
+      "U-tarjeta": 4,
+      "O": 0
+    },
+    "num_tags": 5
+  }
+]

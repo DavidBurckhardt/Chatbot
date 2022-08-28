@@ -9,29 +9,21 @@ stories:
   - intent: mood_great
   - action: utter_happy
 
-- story: sad path 1
+- story: tarjeta_story
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
-
-- story: tarjeta_credito_story
-  steps:
-  - intent: tarjeta_credito
-  - action: utter_tarjeta_credito
+  - intent: obtener_tarjeta
+  - action: utter_tarjeta
   - intent: tipo_tarjeta
   - action: action_tipo_tarjeta
+
+- story: horarios_banco
+  steps:
+  - intent: horarios_atencion
+  - action: action_time
+  - intent: turnos_fin_de_semana
+  - action: action_turno_fin_de_semana 
+
+- story: fin_consulta
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye

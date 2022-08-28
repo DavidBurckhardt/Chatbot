@@ -6,38 +6,48 @@ intents:
   - affirm
   - deny
   - mood_great
-  - mood_unhappy
   - bot_challenge
-  - tarjeta_credito
+  - obtener_tarjeta
+  - tipo_tarjeta
+  - horarios_atencion
+  - turnos_fin_de_semana
+  - crearme_cuenta
 
 entities:
   - tarjeta
+  - cuenta
   
 actions:
   - action_tipo_tarjeta
+  - action_time
+  - action_turno_fin_de_semana
+
+slots:
+  time: 
+    type: text
+    mappings:
+    - type: from_entity
+      entity: horario
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+  - text: "Bienvenido al banco!En que puedo ayudarte?"
 
   utter_did_that_help:
-  - text: "Did that help you?"
+  - text: "Fue de utilidad la ayuda?"
+  - text: "Pudo lograr su objetivo?"
 
   utter_happy:
-  - text: "Great, carry on!"
+  - text: "Excelente!"
 
   utter_goodbye:
-  - text: "Bye"
+  - text: "Adios, vuelva pronto!"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  - text: "Fui creado para ayudarte! Puedes llamarme BankBot "
 
-  utter_tarjeta_credito:
-  - text: "Okey, complete los siguientes datos: "
+  utter_tarjeta:
+  - text: "Enseguida, que tipo de tarjeta estas buscando?"
 
 session_config:
   session_expiration_time: 60
