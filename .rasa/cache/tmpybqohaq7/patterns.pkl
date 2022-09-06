@@ -1,0 +1,18 @@
+[
+  {
+    "name": "contrasenia",
+    "pattern": "[1-9]{8,}"
+  },
+  {
+    "name": "expresion_dia",
+    "pattern": "((([aA-zZ]\\w+ *){1,})+(, )*){1,}"
+  },
+  {
+    "name": "expresion_tarjeta",
+    "pattern": "((([aA-zZ]\\w+ *){1,})+(, )*){1,}"
+  },
+  {
+    "name": "surname",
+    "pattern": "[aA-zZ]{1,15}"
+  }
+]

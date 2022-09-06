@@ -10,24 +10,62 @@ intents:
   - obtener_tarjeta
   - tipo_tarjeta
   - horarios_atencion
-  - turnos_fin_de_semana
-  - crearme_cuenta
+  - asistir_a_sucursal
+  - solicitar_ingreso
+  - agradecer
+  - elegir_dia
+  - ingresar_datos
 
 entities:
   - tarjeta
-  - cuenta
+  - dia
+  - turno_posible
+  - usuario
+  - contrasenia
   
 actions:
-  - action_tipo_tarjeta
   - action_time
-  - action_turno_fin_de_semana
+  - action_cuenta
+  - accion_verificar_dia
 
 slots:
-  time: 
+  tipo_tarjeta: 
+    type: categorical
+    values:
+      - debito
+      - credito
+    mappings:
+    - type: from_entity
+      entity: tarjeta
+  cuenta:
+    type: text
+    mappings:
+    - type: custom
+  turno:
+    type: text
+    mappings:
+    - type: custom
+  dia_turno:
+    type: categorical
+    mappings:
+    - type: from_entity
+      entity: dia
+  usuario:
     type: text
     mappings:
     - type: from_entity
-      entity: horario
+      entity: usuario
+  contrasenia:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: contrasenia
+
+forms:
+  loggin_form:
+    required_slots:
+      - usuario
+      - contrasenia
 
 responses:
   utter_greet:
@@ -42,6 +80,8 @@ responses:
 
   utter_goodbye:
   - text: "Adios, vuelva pronto!"
+  - text: "Nos vemos luego!"
+  - text: "Hasta luego, comuniquese ante cualquier duda!"
 
   utter_iamabot:
   - text: "Fui creado para ayudarte! Puedes llamarme BankBot "
@@ -49,6 +89,48 @@ responses:
   utter_tarjeta:
   - text: "Enseguida, que tipo de tarjeta estas buscando?"
 
+  utter_cuenta:
+  - text: "Usted tiene una cuenta creada? (si/no)"
+
+  utter_otra_tarea:
+  - text: "Estoy aqui para ayudar, necesita algo mas?"
+
+  utter_preguntar:
+  - text: "Que necesita?"
+
+  utter_dia:
+  - text: "Que dia prefieres que sea tu turno?"
+
+  utter_turno:
+  - text: "Quieres sacar un turno?"
+
+  utter_no_entendi:
+  - text: "No entendi lo que quisiste decir, cada dia sigo aprendiendo para ser mejor!"
+
+  utter_tipo_tarjeta_solicitado:
+  - text: "No se a especificado el tipo de tarjeta que desea adquirir, necesita que sea de credito o de debito?"
+
+  utter_credito:
+  - text: "Esta tarjeta le permitira realizar compras y abonarlas a fin de mes. Para adquirirla primero debe loguearse con su cuenta"
+
+  utter_debito:
+  - text: "Esta tarjeta le permitira realizar compras y abonarlas en el momento siempre y cuando usted cuente con saldo en su caja de ahorro. Para adquirirla primero debe loguearse con su cuenta"
+
+  utter_ask_usuario:
+  - text: "Ingrese su usuario: "
+
+  utter_ask_contrasenia:
+  - text: "Ingrese su contrasenia: "
+
+  utter_loggin_form_completado:
+  - text: "Se logueo con exito"
+
+  utter_slots_values_loggin:
+  - text: "Bienvenido nuevamente {usuario}!"
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
+
+#entidad=next(tracker.get_latest_entity_values("respuesta"),None)

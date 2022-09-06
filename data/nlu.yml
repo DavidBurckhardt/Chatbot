@@ -4,16 +4,13 @@ nlu:
 - intent: greet
   examples: |
     - holaa
-    - buenos dias
-    - buenas tardes
-    - buenas noches
     - alo
     - buen dia
     - como va
     - hola
     - hol
     - de nuevo aqui
-
+    - hi
 
 - intent: goodbye
   examples: |
@@ -82,7 +79,6 @@ nlu:
     - [debito](tarjeta)
     - [credito](tarjeta)
 
-
 - intent: horarios_atencion
   examples: |
     - en que horarios pueden asistirme en el banco
@@ -92,12 +88,83 @@ nlu:
     - que dias abren?
     - el banco abre todos los dias
 
-- intent: turnos_fin_de_semana
+- intent: solicitar_ingreso
   examples: |
-    - solo puedo ir el domingo
-    - solo puedo ir el sabado
+    - puedo tener una cuenta en el banco?
+    - como ingreso a mi cuenta
+    - cuenta
+    - quiero ingresar al sistema
+    - como puedo usar mi cuenta
+    - estoy logueado?
+    - necesito registrarme?
+    - quiero usar mi cuenta
+    - puedo entrar a mi cuenta
 
+- intent: asistir_a_sucursal
+  examples: |
+    - necesito ir al banco
+    - alguno de esos dias quiero ir
+    - puedo ir al banco
+    - puedo ir a la sucursal
+    - como voy
+    - necesito hablar con un humano
+    - turno
+
+- intent: elegir_dia
+  examples: |
+    - podria ser [lunes](dia)
+    - quisiera el [martes](dia)
+    - el [miercoles](dia)
+    - puede ser el [jueves](dia)
+    - me gustaria el [viernes](dia)
+    - el [sabado](dia)
+    - el [domingo](dia)
+
+- intent: dar_usuario
+  examples: |
+    - mi usuario es [burck](usuario)
+    - [david](usuario)
+    - me usuario [davidburck](usuario)
+    - [burck2509](usuario)
+    - burck
+    - usuario es [burck](usuario)
+    - [david](usuario)
+
+- intent: dar_contrasenia
+  examples: |
+    - mi contrasenia es [12345678](contrasenia)
+    - [43742659](contrasenia)
+    - contrasenia = [83627498](contrasenia)
+    - el contrasenia es [65498732](contrasenia)
+    - te paso mi contrasenia, [23498756](contrasenia)
+    - es [19283746](contrasenia)
+    - [12345678](contrasenia)
+
+- intent: ingresar_datos
+  examples: |
+    - ingresare mis datos
+    - ingresare
+    - pongo mis datos entonces
+
+- intent: agradecer
+  examples: |
+    - gracias!
+    - muchas gracias!
+    - le agradezco por todo
+
+- regex: contrasenia
+  examples: |
+    - [1-9]{8,}
+- regex: surname
+  examples: |
+    - [aA-zZ]{1,15}
+    
 - regex: expresion_tarjeta
+  examples: |
+    - ((([aA-zZ]\w+ *){1,})+(, )*){1,} 
+  #Expresion regular que acepta espacios y comas 
+
+- regex: expresion_dia
   examples: |
     - ((([aA-zZ]\w+ *){1,})+(, )*){1,} 
   #Expresion regular que acepta espacios y comas 

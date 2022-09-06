@@ -7,6 +7,7 @@
 
 # This is a simple example for a custom action which utters "Hello World!"
 
+from cgitb import text
 from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
@@ -16,17 +17,33 @@ from rasa_sdk.events import SlotSet
 class ActionHelloWorld(Action):
 
     def name(self) -> Text:
-        return "action_tipo_tarjeta"
+        return "accion_verificar_dia"
     def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        tarjeta=tracker.latest_message['entities'][0]['value']
-        message="Esta tarjeta le servira para "
-        if str(tarjeta)=="credito":
-            message=message+"realizar compras y abonarlas a fin de mes"
+        dia_respuesta=next(tracker.get_latest_entity_values("dia"),None)
+        if str(dia_respuesta)=="lunes":
+            message="Se asigno el turno para el dia "
+            dispatcher.utter_message(text=(str(message) + str(dia_respuesta)))
         else:
-            message= message+"realizar compras y abonarlas en el momento siempre y cuando usted cuente con saldo en su caja de ahorro"
-        dispatcher.utter_message(text=str(message))
+            message="Ese dia el banco esta cerrado"
+            dispatcher.utter_message(text=str(message))
         return []
+    
+class ActionHelloWorld(Action):
+
+    def name(self) -> Text:
+        return "action_cuenta"
+    def run(self, dispatcher: CollectingDispatcher,tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        respuesta=tracker.latest_message['intent'].get('name')
+        if str(respuesta)=="deny":
+            message="Desea crearse una?" 
+            dispatcher.utter_message(text=str(message))
+            return [SlotSet("cuenta", "crear")]
+        else:
+            message= "Desea loguearse ingresando sus datos?"
+            dispatcher.utter_message(text=str(message))
+            return [SlotSet("cuenta", "ingresar")]
 
 class ActionTime(Action):
 
@@ -37,16 +54,5 @@ class ActionTime(Action):
         intent=tracker.latest_message['intent'].get('name')
         dispatcher.utter_message(text="Los horarios de atencion son de lunes a viernes de 8:00 a 14:00 hs")
         if str(intent)=="horarios_atencion":
-            return [SlotSet("time", "fin")]
-        return []
-
-class ActionTime(Action):
-
-    def name(self) -> Text:
-        return "action_turno_fin_de_semana"
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, 
-        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        time=tracker.get_slot("time")
-        if str(time)=="fin":
-             dispatcher.utter_message(text="Los turnos disponibles para el fin de semana son Sabados y Domingos de 8:00AM a 9:00AM")
+            return [SlotSet("turno", "sacar")]
         return []

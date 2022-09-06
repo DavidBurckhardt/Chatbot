@@ -1,0 +1,10 @@
+[
+  {
+    "name": "expresion_dia",
+    "pattern": "((([aA-zZ]\\w+ *){1,})+(, )*){1,}"
+  },
+  {
+    "name": "expresion_tarjeta",
+    "pattern": "((([aA-zZ]\\w+ *){1,})+(, )*){1,}"
+  }
+]

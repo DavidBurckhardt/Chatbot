@@ -9,21 +9,96 @@ stories:
   - intent: mood_great
   - action: utter_happy
 
-- story: tarjeta_story
+- story: tarjeta_debito
   steps:
   - intent: obtener_tarjeta
   - action: utter_tarjeta
   - intent: tipo_tarjeta
-  - action: action_tipo_tarjeta
+    entities:
+    - tarjeta
+  - slot_was_set:
+      - tipo_tarjeta: debito
+  - action: utter_debito
+  - checkpoint: cuenta_tarjeta
+
+- story: tarjeta_credito
+  steps:
+  - intent: obtener_tarjeta
+  - action: utter_tarjeta
+  - intent: tipo_tarjeta
+    entities:
+    - tarjeta
+  - slot_was_set:
+    - tipo_tarjeta: credito
+  - action: utter_credito
+  - checkpoint: cuenta_tarjeta
+
+- story: tarjeta_sin_especificar
+  steps:
+  - intent: obtener_tarjeta
+  - action: utter_tarjeta
+  - intent: tipo_tarjeta
+  - action: utter_tipo_tarjeta_solicitado
 
 - story: horarios_banco
   steps:
   - intent: horarios_atencion
   - action: action_time
-  - intent: turnos_fin_de_semana
-  - action: action_turno_fin_de_semana 
 
-- story: fin_consulta
+- story: sacar_turno
   steps:
-  - intent: goodbye
+  - intent: asistir_a_sucursal
+  - action: utter_turno
+  - checkpoint: turno_respuesta
+
+- story: sacar_turno_affirm
+  steps:
+  - checkpoint: turno_respuesta
+  - intent: affirm
+  - action: utter_dia
+  - intent: elegir_dia
+    entities: 
+      - dia
+  - action: accion_verificar_dia
+
+- story: sacar_turno_deny
+  steps:
+  - checkpoint: turno_respuesta
+  - intent: deny
+  - action: utter_otra_tarea
+
+- story: cuenta_banco
+  steps:
+  - intent: solicitar_ingreso
+  - checkpoint: cuenta_tarjeta
+  - action: utter_cuenta
+  - or: 
+    - intent: affirm
+    - intent: deny
+  - action: action_cuenta
+  - checkpoint: acceder_cuenta
+  
+- story: cuenta_banco_deny
+  steps:
+  - checkpoint: acceder_cuenta
+  - intent: deny
+  - or:
+    - slot_was_set:
+      - cuenta: crear
+    - slot_was_set:
+      - cuenta: ingresar
+  - action: utter_otra_tarea
+u
+- story: saludar_al_terminar
+  steps:
+  - intent: agradecer
+  - action: utter_otra_tarea
+  - intent: deny
   - action: utter_goodbye
+
+- story: preguntar_otra_actividad
+  steps:
+  - intent: agradecer
+  - action: utter_otra_tarea
+  - intent: affirm
+  - action: utter_preguntar

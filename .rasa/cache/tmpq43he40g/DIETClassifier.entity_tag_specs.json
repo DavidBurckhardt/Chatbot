@@ -1,0 +1,44 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-contrasenia",
+      "2": "I-contrasenia",
+      "3": "L-contrasenia",
+      "4": "U-contrasenia",
+      "5": "B-dia",
+      "6": "I-dia",
+      "7": "L-dia",
+      "8": "U-dia",
+      "9": "B-tarjeta",
+      "10": "I-tarjeta",
+      "11": "L-tarjeta",
+      "12": "U-tarjeta",
+      "13": "B-usuario",
+      "14": "I-usuario",
+      "15": "L-usuario",
+      "16": "U-usuario",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-contrasenia": 1,
+      "I-contrasenia": 2,
+      "L-contrasenia": 3,
+      "U-contrasenia": 4,
+      "B-dia": 5,
+      "I-dia": 6,
+      "L-dia": 7,
+      "U-dia": 8,
+      "B-tarjeta": 9,
+      "I-tarjeta": 10,
+      "L-tarjeta": 11,
+      "U-tarjeta": 12,
+      "B-usuario": 13,
+      "I-usuario": 14,
+      "L-usuario": 15,
+      "U-usuario": 16,
+      "O": 0
+    },
+    "num_tags": 17
+  }
+]
